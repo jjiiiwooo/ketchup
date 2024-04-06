@@ -7,9 +7,9 @@ import Select from "@mui/material/Select";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding-left: 60vw;
-  padding-right: 10vw;
-  padding-top: 7vw;
+  padding-left: 45vw;
+  padding-right: 5vw;
+  padding-top: 3vw;
 `;
 
 function Sortselect() {
