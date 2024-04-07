@@ -4,7 +4,6 @@ import "../style/slick-theme.css";
 import styled from "styled-components";
 import { useState } from "react";
 import RestaruantList from "./RestaruantList";
-import Sortselect from "./Sortselect";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -124,10 +123,7 @@ function TypeSlider() {
           </div>
         </Slider>
       </div>
-      <div>
-        <Sortselect />
-        {List()}
-      </div>
+      <div>{List()}</div>
     </Wrapper>
   );
 }

@@ -12,11 +12,13 @@ const Wrapper = styled.div`
   padding-top: 3vw;
 `;
 
-function Sortselect() {
+function Sortselect({ onSortChange }) {
   const [sort, setSort] = useState("");
 
   const handleChange = (event) => {
-    setSort(event.target.value);
+    const selectedSort = event.target.value;
+    setSort(selectedSort);
+    onSortChange(selectedSort); //RestaruantList 컴포넌트로 선택된 정렬 기준 전달
   };
 
   return (
