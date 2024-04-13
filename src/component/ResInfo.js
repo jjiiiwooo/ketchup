@@ -37,6 +37,8 @@ const Container = styled.div`
 
   .star {
     text-align: center;
+    margin-left: 25vw;
+    margin-bottom: 5vw;
   }
 
   .location {

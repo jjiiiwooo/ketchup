@@ -1,20 +1,17 @@
-import { FaStar } from "react-icons/fa";
-const Star = ({ star }) => {
-  const total = 5;
-  const filledStar = Math.round(star);
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
+const Star = ({ star }) => {
   return (
-    <div>
-      {[...Array(total)].map((_, index) => {
-        const isFilled = index < filledStar;
-        return (
-          <span key={index}>
-            {isFilled ? <FaStar color="gold" /> : <FaStar color="gray" />}
-          </span>
-        );
-      })}
+    <Stack direction="row" alignItems="center" spacing={1}>
+      <Rating
+        name="half-rating-read"
+        defaultValue={2.5}
+        precision={star}
+        readOnly
+      />
       {star}
-    </div>
+    </Stack>
   );
 };
 
