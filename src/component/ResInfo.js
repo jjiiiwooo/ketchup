@@ -1,6 +1,7 @@
 import { useParams, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { FaLocationDot } from "react-icons/fa6";
+import Star from "./Star";
 
 const Wrapper = styled.div`
   position: relative;
@@ -25,10 +26,17 @@ const Container = styled.div`
   width: 80%;
   padding: 2vw;
 
+  .id {
+    display: none; //id 숨기기
+  }
   .name {
     text-align: center;
     font-weight: bold;
     font-size: 6vw;
+  }
+
+  .star {
+    text-align: center;
   }
 
   .location {
@@ -38,10 +46,12 @@ const Container = styled.div`
 
 const ResInfo = () => {
   const { id } = useParams();
-  const Location = useLocation();
+  const Location = useLocation(); //useLocation() 호출
 
+  //search 부분을 URLSearchParams 객체로 생성
   const params = new URLSearchParams(Location.search);
 
+  //쿼리 가져오기
   const name = params.get("name");
   const img = params.get("img");
   const star = params.get("star");
@@ -51,8 +61,11 @@ const ResInfo = () => {
     <Wrapper>
       <Image img src={img} alt={name} />
       <Container>
+        <p className="id">{id}</p>
         <p className="name">{name}</p>
-        <p className="star">{star}</p>
+        <p className="star">
+          <Star star={star} />
+        </p>
         <p className="location">
           <FaLocationDot />
           {location}
