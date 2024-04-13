@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Splash from "../pages/Splash";
 import Main from "../pages/Main";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MenuList from "../pages/MenuList";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<Main />} />
+            <Route path="/menulist/:id" element={<MenuList />} />
           </Routes>
         </BrowserRouter>
       )}

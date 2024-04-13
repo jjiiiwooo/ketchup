@@ -29,6 +29,7 @@ function RestaruantList({ type }) {
       });
   }, [type, sort]);
 
+  //정렬 기준 변경 함수
   const onSortChange = (selectedSort) => {
     setSort(selectedSort);
   };
@@ -40,10 +41,13 @@ function RestaruantList({ type }) {
       <Wrapper>
         {res.map((item) => (
           <RestaruantItem
+            key={item.id}
+            id={item.id}
             name={item.name}
             img={item.img}
             review={item.review}
             star={item.star}
+            location={item.location}
           />
         ))}
       </Wrapper>

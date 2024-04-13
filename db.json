@@ -8,7 +8,41 @@
       "star":4.0,
       "review":20,
       "tel":"053-522-3333",
-      "img": "http://via.placeholder.com/160"
+      "img": "http://via.placeholder.com/160",
+      "food" : [
+        {
+          "Food_id": 1,
+          "FoodName": "음식1",
+          "FoodImage": "http://via.placeholder.com/160",
+          "Foodingredient": "재료1",
+          "FoodProfile": "설명1",
+          "Foodcalorie": "칼로리1",
+          "Foodprotein": "단백질1",
+          "Foodfat": "지방1",
+          "Foodcarbohydrate": "탄수화물1",
+          "Foodsugars": "당류1",
+          "Foodcalcium": "칼슘1",
+          "Foodlron": "철분1",
+          "Foodpotassium": "칼륨1",
+          "Foodsalt": "나트륨1"
+        },
+        {
+          "Food_id": 2,
+          "FoodName": "음식2",
+          "FoodImage": "http://via.placeholder.com/160",
+          "Foodingredient": "재료2",
+          "FoodProfile": "설명2",
+          "Foodcalorie": "칼로리2",
+          "Foodprotein": "단백질2",
+          "Foodfat": "지방2",
+          "Foodcarbohydrate": "탄수화물2",
+          "Foodsugars": "당류2",
+          "Foodcalcium": "칼슘2",
+          "Foodlron": "철분2",
+          "Foodpotassium": "칼륨2",
+          "Foodsalt": "나트륨2"
+        }
+      ]
     },
     {
       "id":2,
@@ -18,7 +52,41 @@
       "star":4.5,
       "review":10,
       "tel":"053-422-6921",
-      "img": "http://via.placeholder.com/160"
+      "img": "http://via.placeholder.com/160",
+      "food" : [
+        {
+          "Food_id": 1,
+          "FoodName": "음식1",
+          "FoodImage": "http://via.placeholder.com/160",
+          "Foodingredient": "재료1",
+          "FoodProfile": "설명1",
+          "Foodcalorie": "칼로리1",
+          "Foodprotein": "단백질1",
+          "Foodfat": "지방1",
+          "Foodcarbohydrate": "탄수화물1",
+          "Foodsugars": "당류1",
+          "Foodcalcium": "칼슘1",
+          "Foodlron": "철분1",
+          "Foodpotassium": "칼륨1",
+          "Foodsalt": "나트륨1"
+        },
+        {
+          "Food_id": 2,
+          "FoodName": "음식2",
+          "FoodImage": "http://via.placeholder.com/160",
+          "Foodingredient": "재료2",
+          "FoodProfile": "설명2",
+          "Foodcalorie": "칼로리2",
+          "Foodprotein": "단백질2",
+          "Foodfat": "지방2",
+          "Foodcarbohydrate": "탄수화물2",
+          "Foodsugars": "당류2",
+          "Foodcalcium": "칼슘2",
+          "Foodlron": "철분2",
+          "Foodpotassium": "칼륨2",
+          "Foodsalt": "나트륨2"
+        }
+      ]
     },
     {
       "id":3,
@@ -191,4 +259,6 @@
       "img": "http://via.placeholder.com/160"
     }
   ]
+  
 }
+

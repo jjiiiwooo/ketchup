@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 
@@ -34,19 +35,23 @@ const Container = styled.div`
   }
 `;
 
-function RestaruantItem({ name, img, review, star }) {
+function RestaruantItem({ id, name, img, review, star, location }) {
   return (
-    <Container>
-      <img src={img} alt={name} />
-      <p className="name">{name}</p>
-      <div className="box">
-        <p className="star">
-          <FaStar color="yellow" />
-          {star}
-        </p>
-        <p className="review">(리뷰:{review})</p>
-      </div>
-    </Container>
+    <Link
+      to={`/menulist/${id}?name=${name}&star=${star}&location=${location}&img=${img}`}
+    >
+      <Container>
+        <img src={img} alt={name} />
+        <p className="name">{name}</p>
+        <div className="box">
+          <p className="star">
+            <FaStar color="yellow" />
+            {star}
+          </p>
+          <p className="review">(리뷰:{review})</p>
+        </div>
+      </Container>
+    </Link>
   );
 }
 

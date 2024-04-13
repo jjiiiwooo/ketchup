@@ -49,7 +49,7 @@ function PrevArrow(props) {
 }
 
 function TypeSlider() {
-  const [category, setCategory] = useState("전체"); //카테고리
+  const [category, setCategory] = useState("전체"); //카테고리 상태
 
   const settings = {
     className: "center",
@@ -82,6 +82,7 @@ function TypeSlider() {
     }
   };
 
+  //카테고리 선택 함수
   const onCategory = (category) => {
     setCategory(category);
   };

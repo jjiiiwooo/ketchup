@@ -13,8 +13,9 @@ const Wrapper = styled.div`
 `;
 
 function Sortselect({ onSortChange }) {
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState(""); //정렬 상태
 
+  //정렬 상태 변경
   const handleChange = (event) => {
     const selectedSort = event.target.value;
     setSort(selectedSort);
