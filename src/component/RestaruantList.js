@@ -48,6 +48,7 @@ function RestaruantList({ type }) {
             review={item.review}
             star={item.star}
             location={item.location}
+            food={item.food}
           />
         ))}
       </Wrapper>

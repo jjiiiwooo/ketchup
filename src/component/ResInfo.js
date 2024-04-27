@@ -5,6 +5,7 @@ import Star from "./Star";
 
 const Wrapper = styled.div`
   position: relative;
+  padding-bottom: 2vh;
 `;
 const Image = styled.img`
   display: flex;
@@ -21,10 +22,11 @@ const Container = styled.div`
   background-color: white;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -95%);
   border: 1px solid black;
   width: 80%;
   padding: 2vw;
+  padding-bottom: 2vh;
 
   .id {
     display: none; //id 숨기기
@@ -47,8 +49,8 @@ const Container = styled.div`
 `;
 
 const ResInfo = () => {
-  const { id } = useParams();
-  const Location = useLocation(); //useLocation() 호출
+  const { id } = useParams(); //useParams로 파라미터 가져오기
+  const Location = useLocation(); //useLocation() 호출, location 객체 반환
 
   //search 부분을 URLSearchParams 객체로 생성
   const params = new URLSearchParams(Location.search);
