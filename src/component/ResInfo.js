@@ -22,7 +22,7 @@ const Container = styled.div`
   background-color: white;
   top: 100%;
   left: 50%;
-  transform: translate(-50%, -95%);
+  transform: translate(-50%, -90%);
   border: 1px solid black;
   width: 80%;
   padding: 2vw;

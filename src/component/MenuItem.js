@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import { FaSearchPlus } from "react-icons/fa";
 
 const Box = styled.div`
   width: 90vw;
@@ -35,6 +36,10 @@ const Wrapper = styled.div`
     margin-left: 15vw;
     font-size: 3vw;
     color: #6d6b6b;
+  }
+
+  .search {
+    margin-left: auto;
   }
 `;
 
@@ -72,6 +77,14 @@ const MenuItem = () => {
                 <div className="container">
                   <h2 className="Name">{item.FoodName}</h2>
                   <p className="description">{item.FoodProfile}</p>
+                  <Link
+                    to={`/menulist/${id}/${item.Food_id}`}
+                    key={item.Food_id}
+                  >
+                    <div className="search">
+                      <FaSearchPlus style={{ size: 25 }} />
+                    </div>
+                  </Link>
                 </div>
               </Wrapper>
             </div>
