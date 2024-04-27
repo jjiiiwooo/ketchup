@@ -40,6 +40,13 @@ const Wrapper = styled.div`
 
   .search {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    margin-left: 90%;
+    &:hover {
+      color: #c35050;
+    }
   }
 `;
 
@@ -58,7 +65,7 @@ const MenuItem = () => {
         setFood(resData.food);
       })
       .catch((error) => {
-        console.error("데이터를 가져오는 데 실패했습니다", error);
+        alert("데이터를 가져오는 데 실패했습니다", error);
       });
   }, [id]);
 
@@ -82,7 +89,7 @@ const MenuItem = () => {
                     key={item.Food_id}
                   >
                     <div className="search">
-                      <FaSearchPlus style={{ size: 25 }} />
+                      <FaSearchPlus size={25} />
                     </div>
                   </Link>
                 </div>
