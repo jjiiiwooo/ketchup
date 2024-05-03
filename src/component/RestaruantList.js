@@ -22,7 +22,7 @@ function RestaruantList({ type }) {
       const reviews = response.data;
       const count = {};
 
-      reviews.foreEach((item) => {
+      reviews.forEach((item) => {
         const restaurantId = item.redid;
 
         if (count[restaurantId]) {
