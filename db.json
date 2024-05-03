@@ -6,7 +6,6 @@
       "location":"대구광역시 중구 동인동4가 4",
       "type":"한식",
       "star":4.0,
-      "review":20,
       "tel":"053-522-3333",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -50,7 +49,6 @@
       "location":"대구광역시 중구 대봉동 17-10",
       "type":"한식",
       "star":4.5,
-      "review":10,
       "tel":"053-422-6921",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -94,7 +92,6 @@
       "location":"대구광역시 중구 남산동 938-9",
       "type":"한식",
       "star":3.5,
-      "review":2,
       "tel":"053-568-9090",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -138,7 +135,6 @@
       "location":"대구광역시 중구 공평동 10-2",
       "type":"한식",
       "star":3.0,
-      "review":40,
       "tel":"010-****-1017",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -182,7 +178,6 @@
       "location":"대구광역시 중구 공평동 1-1",
       "type":"양식",
       "star":2.5,
-      "review":50,
       "tel":"053-213-0512",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -226,7 +221,6 @@
       "location":"대구광역시 중구 삼덕동1가 21-10",
       "type":"양식",
       "star":5.0,
-      "review":2,
       "tel":"053-424-5925",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -270,7 +264,6 @@
       "location":"대구광역시 중구 공평동 1-5",
       "type":"양식",
       "star":3.5,
-      "review":25,
       "tel":"010-****-6176",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -314,7 +307,6 @@
       "location":"대구광역시 중구 대안동 22",
       "type":"양식",
       "star":2.5,
-      "review":12,
       "tel":"010-****-6451",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -358,7 +350,6 @@
       "location":"대구광역시 중구 공평동 82-3",
       "type":"디저트/베이커리",
       "star":4.0,
-      "review":24,
       "tel":"053- 256-7436",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -402,7 +393,6 @@
       "location":"대구광역시 중구 봉산동 225-5",
       "type":"디저트/베이커리",
       "star":3.5,
-      "review":35,
       "tel":"010-****-3774",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -446,7 +436,6 @@
       "location":"대구광역시 중구 종로1가 34-2",
       "type":"디저트/베이커리",
       "star":4.0,
-      "review":5,
       "tel":"053-267-7788",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -490,7 +479,6 @@
       "location":"대구광역시 중구 덕산동 124-29",
       "type":"디저트/베이커리",
       "star":3.0,
-      "review":53,
       "tel":"053-426-3006",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -534,7 +522,6 @@
       "location":"대구광역시 중구 동일동 32-2",
       "type":"일식",
       "star":4.0,
-      "review":22,
       "tel":"0507-1402-8965",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -578,7 +565,6 @@
       "location":"대구광역시 중구 동일동 32-2",
       "type":"일식",
       "star":3.0,
-      "review":15,
       "tel":"0507-1372-4377",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -622,7 +608,6 @@
       "location":"대구광역시 중구 대신동 138",
       "type":"일식",
       "star":1.5,
-      "review":17,
       "tel":"053-554-6636",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -666,7 +651,6 @@
       "location":"대구광역시 중구 공평동 8-6",
       "type":"일식",
       "star":4.0,
-      "review":3,
       "tel":"053-427-0141",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -710,7 +694,6 @@
       "location":"대구광역시 중구 덕산동 124-10",
       "type":"중식",
       "star":3.0,
-      "review":18,
       "tel":"053-424-0449",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -754,7 +737,6 @@
       "location":"대구광역시 중구 남일동 92",
       "type":"중식",
       "star":3.5,
-      "review":16,
       "tel":"053-425-6839",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -798,7 +780,6 @@
       "location":"대구광역시 중구 종로2가 20",
       "type":"중식",
       "star":4.5,
-      "review":4,
       "tel":"053-425-6839",
       "img": "http://via.placeholder.com/160",
       "food" : [
@@ -837,8 +818,39 @@
       ]
     }
   ],
-  "Review" : [
-    
+  "RestrauntReview" : [
+    {
+      "id":1,
+      "resid":1,
+      "content": "very good",
+      "image":"",
+      "star":4.0
+
+    }
+  ],
+  "MenuReview" : [
+    {
+      "id":1,
+      "menuid":1,
+      "Content":"very good",
+      "Image":"",
+      "Star":3.0
+
+    }
+  ],
+  "Users": [
+    {
+      "id": 1,
+      "email": "test1@google.com",
+      "password": "11111aaaa",
+      "nickname": "user1"
+    },
+    {
+      "id": 2,
+      "email": "test2@google.com",
+      "password": "22222bbbb",
+      "nickname": "user2"
+    }
   ]
   
 }

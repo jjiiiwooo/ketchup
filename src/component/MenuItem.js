@@ -51,8 +51,8 @@ const Wrapper = styled.div`
 `;
 
 const MenuItem = () => {
-  const { id } = useParams();
-  const [food, setFood] = useState([]);
+  const { id } = useParams(); //useParmas로 id 가져오기
+  const [food, setFood] = useState([]); //데이터 상태
 
   useEffect(() => {
     //id에 해당하는 음식 데이터 가져오기
