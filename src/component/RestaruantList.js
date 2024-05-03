@@ -15,29 +15,31 @@ function RestaruantList({ type }) {
   const [sort, setSort] = useState("");
   const [reviewCnt, setReviewCnt] = useState({});
 
-  //리뷰 개수 가져오기
-  const getReview = () => {
-    try {
-      const response = axios.get("http://localhost:8080/RestrauntReview");
-      const reviews = response.data;
-      const count = {};
-
-      reviews.forEach((item) => {
-        const restaurantId = item.redid;
-
-        if (count[restaurantId]) {
-          count[restaurantId]++;
-        } else {
-          count[restaurantId] = 1;
-        }
-      });
-      setReviewCnt(count);
-    } catch (error) {
-      console.log("리뷰 데이터를 가져오는데 실패했습니다.:", error);
-    }
-  };
-
   useEffect(() => {
+    //리뷰 개수 가져오기
+    const getReview = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/RestrauntReview"
+        );
+        const reviews = response.data;
+        const count = {};
+
+        reviews.forEach((review) => {
+          const restaurantId = review.resid;
+
+          if (count[restaurantId]) {
+            count[restaurantId]++;
+          } else {
+            count[restaurantId] = 1;
+          }
+        });
+        setReviewCnt(count);
+      } catch (error) {
+        alert("리뷰 데이터를 가져오는데 실패했습니다.:", error);
+      }
+    };
+
     getReview();
 
     axios
