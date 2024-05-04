@@ -1,143 +1,65 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .text {
+    font-size: 7vh;
+    font-weight: bold;
+    text-align: center;
+    color: #c35050;
+    margin-top: 4vh;
+  }
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vh;
+`;
+
+const Input = styled.input`
+  font-size: 2.5vh;
   width: 100%;
-  height: 100%;
-`;
-const SignT = styled.div`
-  text-align: center;
-  font-family: Inter;
-  font-size: 10vw;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.4;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000;
+  padding: 1vh;
+  border-radius: 1vh;
+  outline: none;
 `;
 
-const EmailT = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 7vw;
-  line-height: 42px;
+const Text = styled.div`
+  display: left;
+  font-size: 4vh;
 `;
 
-const EmailForm = styled.input`
-  box-sizing: border-box;
-  width: 95%;
-  height: 40px;
-  margin: 2vw 0 2vw 0;
-  background: #fffdfd;
-  border: 1px solid #000000;
-  font-size: 6vw;
+const Error = styled.div`
+  color: red;
+  font-size: 2vh;
+  margin-top: 0.5vh;
+  width: 80%;
 `;
 
-const EmailError = styled.div`
-  width: 100%;
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 700;
-  font-size: 4vw;
-  line-height: 130%;
-  color: #ea0909;
-`;
+const Button = styled.button`
+  border-radius: 2vh;
+  background-color: #ffffff;
+  margin-right: 3vh;
+  padding: 1vh 3vh;
+  font-size: 3vh;
+  margin-top: 10vh;
 
-const PsT = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 7vw;
-  line-height: 42px;
-`;
-
-const PasswordForm = styled.input`
-  box-sizing: border-box;
-  width: 95%;
-  height: 40px;
-  margin: 2vw 0 2vw 0;
-  background: #fffdfd;
-  border: 1px solid #000000;
-  font-size: 6vw;
-`;
-
-const PsError = styled.div`
-  width: 100%;
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 700;
-  font-size: 4vw;
-  line-height: 130%;
-  color: #ea0909;
-`;
-
-const PsCT = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 7vw;
-  line-height: 42px;
-`;
-
-const PscForm = styled.input`
-  box-sizing: border-box;
-  width: 95%;
-  height: 40px;
-  margin: 2vw 0 2vw 0;
-  background: #fffdfd;
-  border: 1px solid #000000;
-  font-size: 6vw;
-`;
-
-const PscError = styled.div`
-  width: 100%;
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 700;
-  font-size: 4vw;
-  line-height: 130%;
-  color: #ea0909;
-`;
-
-const NickT = styled.div`
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 7vw;
-  line-height: 42px;
-`;
-
-const NickForm = styled.input`
-  box-sizing: border-box;
-  width: 95%;
-  height: 40px;
-  margin: 2vw 0 2vw 0;
-  background: #fffdfd;
-  border: 1px solid #000000;
-  font-size: 6vw;
-`;
-
-const SubmitButton = styled.button`
-  width: 70%;
-  margin: 30% 10% 10% 10%;
-  border-radius: 20px;
-  background-color: #c5dbfc;
-  font-family: Inter;
-  font-size: 8vw;
-  font-weight: 800;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.4;
-  letter-spacing: normal;
-  text-align: center;
-  color: #000;
+  &:hover {
+    background-color: #c35050;
+  }
 `;
 
 function Signup() {
+  const navigate = useNavigate();
+
   //초기값 세팅
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -240,6 +162,7 @@ function Signup() {
         nickname,
       });
       alert("Signup success! Please Login");
+      navigate("/");
     } catch (error) {
       alert("Signup Error", error);
     }
@@ -247,56 +170,43 @@ function Signup() {
 
   return (
     <Wrapper>
-      <SignT>signup</SignT>
+      <div className="text">Signup</div>
 
-      <EmailT>EMAIL</EmailT>
-      <EmailForm
-        id="email"
-        value={email}
-        onChange={handleEmail}
-        required={true}
-        type="text"
-      />
+      <InputContainer>
+        <Text>Email</Text>
+        <Input
+          value={email}
+          onChange={handleEmail}
+          placeholder="test@gmail.com"
+          type="text"
+        />
+        <Error>{emailMessage}</Error>
+      </InputContainer>
 
-      <EmailError>{emailMessage}</EmailError>
+      <InputContainer>
+        <Text>Password</Text>
+        <Input value={password} onChange={handlePassword} type="password" />
+        <Error>{passwordMessage}</Error>
+      </InputContainer>
 
-      <PsT>PASSWORD</PsT>
-      <PasswordForm
-        id="password"
-        value={password}
-        onChange={handlePassword}
-        required={true}
-        type="password"
-      />
+      <InputContainer>
+        <Text>Password Confirm</Text>
+        <Input
+          value={passwordConfirm}
+          onChange={handlePasswordConfirm}
+          type="password"
+        />
+        <Error>{passwordConfirmMessage}</Error>
+      </InputContainer>
 
-      <PsError>{passwordMessage}</PsError>
+      <InputContainer>
+        <Text>Nickname</Text>
+        <Input value={nickname} onChange={handleNickname} type="text" />
+      </InputContainer>
 
-      <PsCT>PASSWORDCONFIRM</PsCT>
-      <PscForm
-        id="passwordConfirm"
-        value={passwordConfirm}
-        onChange={handlePasswordConfirm}
-        required={true}
-        type="password"
-      />
-
-      <PscError>{passwordConfirmMessage}</PscError>
-
-      <NickT>NICKNAME</NickT>
-      <NickForm
-        id="nickname"
-        value={nickname}
-        onChange={handleNickname}
-        required={true}
-        type="text"
-      />
-      <SubmitButton
-        formMethod="post"
-        onClick={handleSubmitbutton}
-        disabled={notAllow}
-      >
+      <Button onClick={handleSubmitbutton} disabled={notAllow}>
         Signup
-      </SubmitButton>
+      </Button>
     </Wrapper>
   );
 }

@@ -38,7 +38,7 @@ const Container = styled.div`
 function RestaruantItem({ id, name, img, review, star, location, food }) {
   return (
     <Link
-      to={`/menulist/${id}?name=${name}&star=${star}&location=${location}&img=${img}&food=${food}`}
+      to={`/main/menulist/${id}?name=${name}&star=${star}&location=${location}&img=${img}&food=${food}`}
     >
       <Container>
         <img src={img} alt={name} />

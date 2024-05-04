@@ -25,6 +25,7 @@ function RestaruantList({ type }) {
         const reviews = response.data;
         const count = {};
 
+        //리뷰 데이터 순회하여 리뷰 개수 갱신
         reviews.forEach((review) => {
           const restaurantId = review.resid;
 
@@ -36,7 +37,7 @@ function RestaruantList({ type }) {
         });
         setReviewCnt(count);
       } catch (error) {
-        alert("리뷰 데이터를 가져오는데 실패했습니다.:", error);
+        console.log("리뷰 데이터를 가져오는데 실패했습니다.:", error);
       }
     };
 
