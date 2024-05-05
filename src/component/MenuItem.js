@@ -7,11 +7,7 @@ import { FaSearchPlus } from "react-icons/fa";
 const Box = styled.div`
   width: 90vw;
   border-top: 1px solid #dee2e6;
-
-  //컴포넌트간 간격
-  & {
-    margin-top: 5vh;
-  }
+  margin-top: 5vh;
 `;
 
 const Wrapper = styled.div`
@@ -20,6 +16,8 @@ const Wrapper = styled.div`
   .image {
     margin: 2vh;
     border-radius: 5vw;
+    max-width: 40%;
+    height: auto;
   }
 
   .container {
@@ -42,7 +40,6 @@ const Wrapper = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
-
     margin-left: 90%;
     &:hover {
       color: #c35050;

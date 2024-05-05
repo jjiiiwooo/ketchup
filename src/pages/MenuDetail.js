@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Nutrition from "../component/Nutrition";
@@ -55,6 +55,7 @@ const MenuDetail = () => {
   const { id, Food_id } = useParams();
   const [food, setFood] = useState(null);
   const [content, setContent] = useState(null);
+  const navigate = useNavigate();
 
   //전달받은 id를 사용에 식당을 불러오고
   // find 메서드를 사용하여 전달받은 Food_id와 일치하는 음식 데이터를 불러옴
@@ -82,12 +83,18 @@ const MenuDetail = () => {
     }
   };
 
+  //리뷰작성 페이지 이동시 food_id,id 데이터도 함께 전달
+  const gotoReview = () => {
+    navigate(`/main/menulist/${id}/${Food_id}/review`);
+  };
+
   return (
     <div>
       {food ? (
         <Box>
           <img className="Image" src={food.FoodImage} alt={food.FoodName} />
           <p className="Name">{food.FoodName}</p>
+          <button onClick={gotoReview}>리뷰</button>
           <ButtonBox>
             <Button onClick={() => ButtonClick("profile")}>Description</Button>
             <Button onClick={() => ButtonClick("nutrition")}>Nutrition</Button>
