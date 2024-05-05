@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { AuthContext } from "../Context/AuthContext";
 
 const Wrapper = styled.div`
   display: flex;
@@ -93,6 +94,7 @@ const ButtonGroup = styled.div`
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -123,6 +125,11 @@ const Login = () => {
       })
       .then((response) => {
         if (response.data.length > 0) {
+          const user = response.data[0];
+          //로그인 정보 localStorage에 저장
+          localStorage.setItem("user", JSON.stringify(user));
+          //로그인 성공시 로그인 상태 디스패치
+          login();
           alert(`login Success`);
           navigate("/main");
         } else {
