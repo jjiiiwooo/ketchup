@@ -10,7 +10,9 @@ const Container = styled.div`
 
   & img {
     border-radius: 30px;
-    object-fit: scale-down;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .name {
@@ -41,7 +43,7 @@ function RestaruantItem({ id, name, img, review, star, location, food }) {
       to={`/main/menulist/${id}?name=${name}&star=${star}&location=${location}&img=${img}&food=${food}`}
     >
       <Container>
-        <img src={img} alt={name} />
+        <img style={{ width: "160px", height: "160px" }} src={img} alt={name} />
         <p className="name">{name}</p>
         <div className="box">
           <p className="star">

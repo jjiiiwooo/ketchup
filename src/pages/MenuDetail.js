@@ -51,6 +51,15 @@ const Button = styled.button`
   }
 `;
 
+const ReviewButton = styled.button`
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  color: gray;
+  margin-left: 60vw;
+  font-size: 4vw;
+`;
+
 const MenuDetail = () => {
   const { id, Food_id } = useParams();
   const [food, setFood] = useState(null);
@@ -92,9 +101,14 @@ const MenuDetail = () => {
     <div>
       {food ? (
         <Box>
-          <img className="Image" src={food.FoodImage} alt={food.FoodName} />
+          <img
+            style={{ width: "800px", height: "320px" }}
+            className="Image"
+            src={food.FoodImage}
+            alt={food.FoodName}
+          />
           <p className="Name">{food.FoodName}</p>
-          <button onClick={gotoReview}>리뷰</button>
+          <ReviewButton onClick={gotoReview}>리뷰{">"}</ReviewButton>
           <ButtonBox>
             <Button onClick={() => ButtonClick("profile")}>Description</Button>
             <Button onClick={() => ButtonClick("nutrition")}>Nutrition</Button>

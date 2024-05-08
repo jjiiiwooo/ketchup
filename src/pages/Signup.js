@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Modal from "../component/Modal";
 
 const Wrapper = styled.div`
   display: flex;
@@ -65,6 +66,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [nickname, setNickname] = useState("");
+  const [open, setOpen] = useState(false);
 
   //오류메시지 상태 저장
   const [emailMessage, setEmailMessage] = useState("");
@@ -161,7 +163,8 @@ function Signup() {
         password,
         nickname,
       });
-      alert("Signup success! Please Login");
+      //alert("Signup success! Please Login");
+      setOpen(true);
       navigate("/");
     } catch (error) {
       alert("Signup Error", error);
@@ -169,45 +172,48 @@ function Signup() {
   };
 
   return (
-    <Wrapper>
-      <div className="text">Signup</div>
+    <div>
+      <Wrapper>
+        <div className="text">Signup</div>
 
-      <InputContainer>
-        <Text>Email</Text>
-        <Input
-          value={email}
-          onChange={handleEmail}
-          placeholder="test@gmail.com"
-          type="text"
-        />
-        <Error>{emailMessage}</Error>
-      </InputContainer>
+        <InputContainer>
+          <Text>Email</Text>
+          <Input
+            value={email}
+            onChange={handleEmail}
+            placeholder="test@gmail.com"
+            type="text"
+          />
+          <Error>{emailMessage}</Error>
+        </InputContainer>
 
-      <InputContainer>
-        <Text>Password</Text>
-        <Input value={password} onChange={handlePassword} type="password" />
-        <Error>{passwordMessage}</Error>
-      </InputContainer>
+        <InputContainer>
+          <Text>Password</Text>
+          <Input value={password} onChange={handlePassword} type="password" />
+          <Error>{passwordMessage}</Error>
+        </InputContainer>
 
-      <InputContainer>
-        <Text>Password Confirm</Text>
-        <Input
-          value={passwordConfirm}
-          onChange={handlePasswordConfirm}
-          type="password"
-        />
-        <Error>{passwordConfirmMessage}</Error>
-      </InputContainer>
+        <InputContainer>
+          <Text>Password Confirm</Text>
+          <Input
+            value={passwordConfirm}
+            onChange={handlePasswordConfirm}
+            type="password"
+          />
+          <Error>{passwordConfirmMessage}</Error>
+        </InputContainer>
 
-      <InputContainer>
-        <Text>Nickname</Text>
-        <Input value={nickname} onChange={handleNickname} type="text" />
-      </InputContainer>
+        <InputContainer>
+          <Text>Nickname</Text>
+          <Input value={nickname} onChange={handleNickname} type="text" />
+        </InputContainer>
 
-      <Button onClick={handleSubmitbutton} disabled={notAllow}>
-        Signup
-      </Button>
-    </Wrapper>
+        <Button onClick={handleSubmitbutton} disabled={notAllow}>
+          Signup
+        </Button>
+      </Wrapper>
+      <div>{open && <Modal content="Signup success! Please Login" />};</div>
+    </div>
   );
 }
 

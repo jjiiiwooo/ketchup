@@ -75,6 +75,7 @@ const MenuItem = () => {
               <Wrapper>
                 <img
                   className="image"
+                  style={{ width: "160px", height: "160px" }}
                   src={item.FoodImage}
                   alt={item.caption}
                 />

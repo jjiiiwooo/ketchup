@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from "../Context/AuthContext";
+import Modal from "../component/Modal";
 
 const Wrapper = styled.div`
   display: flex;
@@ -100,6 +101,7 @@ const Login = () => {
 
   const [emailValid, setEmailValid] = useState(false);
   const [pwValid, setPwValid] = useState(false);
+  const [open, setOpen] = useState(false); //모달창
 
   //이메일 유효성 검사
   const handleEmail = (e) => {
@@ -130,7 +132,7 @@ const Login = () => {
           localStorage.setItem("user", JSON.stringify(user));
           //로그인 성공시 로그인 상태 디스패치
           login();
-          alert(`login Success`);
+          setOpen(true);
           navigate("/main");
         } else {
           alert("login failure");
@@ -160,54 +162,59 @@ const Login = () => {
   };
 
   return (
-    <Wrapper>
+    <div>
+      <Wrapper>
+        <div>
+          <p className="LoginText">LOGIN</p>
+
+          <Email>
+            <p className="text">EMAIL</p>
+            <input
+              className="LInput"
+              type="text"
+              placeholder="test@gmail.com"
+              value={email}
+              onChange={handleEmail}
+            />
+            <p className="Error">
+              {!emailValid && email.length > 0 && (
+                <div>Please enter a valid e-mail </div>
+              )}
+            </p>
+          </Email>
+
+          <Password>
+            <p className="text">PASSWORD</p>
+            <input
+              className="PInput"
+              type="password"
+              value={password}
+              onChange={handlePassword}
+            />
+            <p className="Error">
+              {!pwValid && password.length > 0 && (
+                <div>
+                  Please enter at least 8 characters including English and
+                  numbers.
+                </div>
+              )}
+            </p>
+          </Password>
+
+          <ButtonGroup>
+            <button className="submit" onClick={handleConfirmButton}>
+              SUBMIT
+            </button>
+            <button className="signup" onClick={gotoSignup}>
+              SIGNUP
+            </button>
+          </ButtonGroup>
+        </div>
+      </Wrapper>
       <div>
-        <p className="LoginText">LOGIN</p>
-
-        <Email>
-          <p className="text">EMAIL</p>
-          <input
-            className="LInput"
-            type="text"
-            placeholder="test@gmail.com"
-            value={email}
-            onChange={handleEmail}
-          />
-          <p className="Error">
-            {!emailValid && email.length > 0 && (
-              <div>Please enter a valid e-mail </div>
-            )}
-          </p>
-        </Email>
-
-        <Password>
-          <p className="text">PASSWORD</p>
-          <input
-            className="PInput"
-            type="password"
-            value={password}
-            onChange={handlePassword}
-          />
-          <p className="Error">
-            {!pwValid && password.length > 0 && (
-              <div>
-                Please enter at least 8 characters including English and
-                numbers.
-              </div>
-            )}
-          </p>
-        </Password>
-
-        <ButtonGroup>
-          <button className="submit" onClick={handleConfirmButton}>
-            SUBMIT
-          </button>
-          <button className="signup" onClick={gotoSignup}>
-            SIGNUP
-          </button>
-        </ButtonGroup>
+        {open && setTimeout(() => <Modal content="login Success" />, 3000)};
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
