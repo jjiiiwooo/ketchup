@@ -67,16 +67,16 @@ function TypeSlider() {
   //카테고리별로 조건부 렌더링
   const List = () => {
     switch (category) {
-      case "한식":
-        return <RestaruantList type="한식" />;
-      case "일식":
-        return <RestaruantList type="일식" />;
-      case "중식":
-        return <RestaruantList type="중식" />;
-      case "양식":
-        return <RestaruantList type="양식" />;
-      case "디저트":
-        return <RestaruantList type="디저트/베이커리" />;
+      case "Korean cuisine":
+        return <RestaruantList type="Korean cuisine" />;
+      case "Japanese cuisine":
+        return <RestaruantList type="Japanese cuisine" />;
+      case "Chinese cuisine":
+        return <RestaruantList type="Chinese cuisine" />;
+      case "Western cuisine":
+        return <RestaruantList type="Western cuisine" />;
+      case "Dessert":
+        return <RestaruantList type="Dessert" />;
       default:
         return <RestaruantList />;
     }
@@ -89,37 +89,43 @@ function TypeSlider() {
 
   return (
     <Wrapper>
-      <Title>카테고리</Title>
+      <Title>Category</Title>
       <div className="slider-container">
         <Slider {...settings}>
-          <div onClick={() => onCategory("전체")}>
-            <Category className={category === "전체" ? "active" : ""}>
-              전체
+          <div onClick={() => onCategory("All")}>
+            <Category className={category === "All" ? "active" : ""}>
+              All
             </Category>
           </div>
-          <div onClick={() => onCategory("한식")}>
-            <Category className={category === "한식" ? "active" : ""}>
-              한식
+          <div onClick={() => onCategory("Korean cuisine")}>
+            <Category className={category === "Korean cuisine" ? "active" : ""}>
+              Korean cuisine
             </Category>
           </div>
-          <div onClick={() => onCategory("일식")}>
-            <Category className={category === "일식" ? "active" : ""}>
-              일식
+          <div onClick={() => onCategory("Japanese cuisine")}>
+            <Category
+              className={category === "Japanese cuisine" ? "active" : ""}
+            >
+              Japanese cuisine
             </Category>
           </div>
-          <div onClick={() => onCategory("중식")}>
-            <Category className={category === "중식" ? "active" : ""}>
-              중식
+          <div onClick={() => onCategory("Chinese cuisine")}>
+            <Category
+              className={category === "Chinese cuisine" ? "active" : ""}
+            >
+              Chinese cuisine
             </Category>
           </div>
-          <div onClick={() => onCategory("양식")}>
-            <Category className={category === "양식" ? "active" : ""}>
-              양식
+          <div onClick={() => onCategory("Western cuisine")}>
+            <Category
+              className={category === "Western cuisine" ? "active" : ""}
+            >
+              Western cuisine
             </Category>
           </div>
-          <div onClick={() => onCategory("디저트")}>
-            <Category className={category === "디저트" ? "active" : ""}>
-              디저트
+          <div onClick={() => onCategory("Dessert")}>
+            <Category className={category === "Dessert" ? "active" : ""}>
+              Dessert
             </Category>
           </div>
         </Slider>

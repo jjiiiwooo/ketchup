@@ -19,6 +19,10 @@ const Container = styled.div`
     font-weight: bold;
     padding-left: 2vw;
     margin-bottom: -1vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 20vw;
   }
 
   .box {
@@ -43,14 +47,14 @@ function RestaruantItem({ id, name, img, review, star, location, food }) {
       to={`/main/menulist/${id}?name=${name}&star=${star}&location=${location}&img=${img}&food=${food}`}
     >
       <Container>
-        <img style={{ width: "160px", height: "160px" }} src={img} alt={name} />
+        <img style={{ width: "120px", height: "120px" }} src={img} alt={name} />
         <p className="name">{name}</p>
         <div className="box">
           <p className="star">
             <FaStar color="yellow" />
             {star}
           </p>
-          <p className="review">(리뷰:{review})</p>
+          <p className="review">(Rev:{review})</p>
         </div>
       </Container>
     </Link>

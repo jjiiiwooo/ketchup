@@ -30,7 +30,7 @@ function Sortselect({ onSortChange }) {
             id="demo-simple-select-label"
             sx={{ fontWeight: "bold", fontSize: 18 }}
           >
-            정렬
+            Sort
           </InputLabel>
           <Select
             labelId="demo-simple-select-labe"
@@ -39,9 +39,9 @@ function Sortselect({ onSortChange }) {
             label="Sort"
             onChange={handleChange}
           >
-            <MenuItem value={"distance"}>거리순</MenuItem>
-            <MenuItem value={"review"}>리뷰순</MenuItem>
-            <MenuItem value={"star"}>별점순</MenuItem>
+            <MenuItem value={"distance"}>Distance</MenuItem>
+            <MenuItem value={"review"}>Review</MenuItem>
+            <MenuItem value={"star"}>Star </MenuItem>
           </Select>
         </FormControl>
       </Box>

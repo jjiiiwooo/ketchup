@@ -102,13 +102,13 @@ const MenuDetail = () => {
       {food ? (
         <Box>
           <img
-            style={{ width: "800px", height: "320px" }}
+            style={{ width: "420px", height: "320px" }}
             className="Image"
             src={food.FoodImage}
             alt={food.FoodName}
           />
           <p className="Name">{food.FoodName}</p>
-          <ReviewButton onClick={gotoReview}>리뷰{">"}</ReviewButton>
+          <ReviewButton onClick={gotoReview}>Review{">"}</ReviewButton>
           <ButtonBox>
             <Button onClick={() => ButtonClick("profile")}>Description</Button>
             <Button onClick={() => ButtonClick("nutrition")}>Nutrition</Button>

@@ -31,9 +31,10 @@ const Wrapper = styled.div`
   }
 
   .description {
-    margin-left: 15vw;
-    font-size: 3vw;
+    margin-left: 7vw;
+    font-size: 4vw;
     color: #6d6b6b;
+    text-align: left;
   }
 
   .search {
