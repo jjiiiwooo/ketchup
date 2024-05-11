@@ -8,6 +8,7 @@ const Box = styled.div`
   width: 90vw;
   border-top: 1px solid #dee2e6;
   margin-top: 5vh;
+  padding-top: 2vh;
 `;
 
 const Wrapper = styled.div`

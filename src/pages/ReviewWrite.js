@@ -1,7 +1,11 @@
 import TextField from "../component/TextField";
 
 const ReviewWrite = () => {
-  return <TextField />;
+  return (
+    <>
+      <TextField />
+    </>
+  );
 };
 
 export default ReviewWrite;

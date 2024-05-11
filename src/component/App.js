@@ -36,7 +36,7 @@ function App() {
                 element={<MenuDetail />}
               />
               <Route
-                path="/main/menulist/:id/:Food_id/review"
+                path="/main/menulist/:id/review"
                 element={<ReviewWrite />}
               />
             </Routes>

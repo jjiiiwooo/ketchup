@@ -827,23 +827,16 @@
       "image": "",
       "date": "2024-05-04",
       "star": 4
-    }
-  ],
-  "MenuReview": [
-    {
-      "id": 1,
-      "menuid": 1,
-      "userid": 1,
-      "Content": "very good",
-      "Image": "",
-      "date": "2024-05-04",
-      "Star": 3
     },
     {
-      "content": "very good!!",
-      "userid": 1,
-      "menuid": 1,
       "id": 2
+    },
+    {
+      "content": "리뷰 테스트",
+      "userid": 1,
+      "resid": 4,
+      "date": "2024-05-11T18:17:07.572Z",
+      "id": 3
     }
   ],
   "Users": [

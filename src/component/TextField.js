@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
+import PhotoField from "./PhotoField";
 
 const ContentBox = styled.div`
   border: 1px solid black;
@@ -32,7 +33,7 @@ const StyledInput = styled.input`
   margin-top: 3vh;
   padding: 8px;
   border: none;
-  font-size: 16px;
+  font-size: 3vh;
   text-align: center;
 `;
 
@@ -62,20 +63,31 @@ const ButtonGroup = styled.div`
 const TextField = () => {
   const [content, setContent] = useState(""); //리뷰 내용
 
-  const { Food_id } = useParams();
+  const { id } = useParams();
   //현재 로그인한 사용자 닉네임 가져오고 프로필 사진이 있는 경우 가져오기
   //로컬 스토리지에 저장된 user 데이터 읽기
   const user = JSON.parse(localStorage.getItem("user"));
+
+  //PhotoField 컴포넌트에 접근할 useRef 생성
+  const photoFieldRef = useRef();
 
   //리뷰 작성 POST
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/MenuReview", {
-        content: content, //글 내용
-        userid: user.id, //작성자
-        menuid: parseInt(Food_id), //해당 메뉴의 Food_id
-      });
+      //PhotoField 컴포넌트에 uploadImage 함수를 호출하여 완성 버튼을 눌렀을 때 이미지 같이 전송
+      const imageUrl = await photoFieldRef.current.uploadImage();
+
+      const response = await axios.post(
+        "http://localhost:8080/RestrauntReview",
+        {
+          content: content, //글 내용
+          userid: user.id, //작성자
+          resid: parseInt(id), //해당 식당의 id
+          image: imageUrl,
+          date: new Date().toISOString(),
+        }
+      );
       console.log("리뷰 등록이 완료되었습니다.", response.data);
       setContent("");
     } catch (error) {
@@ -106,6 +118,7 @@ const TextField = () => {
           ></StyledInput>
         </form>
       </ContentBox>
+      <PhotoField ref={photoFieldRef} />
     </div>
   );
 };

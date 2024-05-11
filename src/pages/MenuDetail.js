@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Nutrition from "../component/Nutrition";
@@ -51,20 +51,10 @@ const Button = styled.button`
   }
 `;
 
-const ReviewButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-weight: bold;
-  color: gray;
-  margin-left: 60vw;
-  font-size: 4vw;
-`;
-
 const MenuDetail = () => {
   const { id, Food_id } = useParams();
   const [food, setFood] = useState(null);
   const [content, setContent] = useState(null);
-  const navigate = useNavigate();
 
   //전달받은 id를 사용에 식당을 불러오고
   // find 메서드를 사용하여 전달받은 Food_id와 일치하는 음식 데이터를 불러옴
@@ -92,11 +82,6 @@ const MenuDetail = () => {
     }
   };
 
-  //리뷰작성 페이지 이동시 food_id,id 데이터도 함께 전달
-  const gotoReview = () => {
-    navigate(`/main/menulist/${id}/${Food_id}/review`);
-  };
-
   return (
     <div>
       {food ? (
@@ -108,7 +93,6 @@ const MenuDetail = () => {
             alt={food.FoodName}
           />
           <p className="Name">{food.FoodName}</p>
-          <ReviewButton onClick={gotoReview}>Review{">"}</ReviewButton>
           <ButtonBox>
             <Button onClick={() => ButtonClick("profile")}>Description</Button>
             <Button onClick={() => ButtonClick("nutrition")}>Nutrition</Button>
