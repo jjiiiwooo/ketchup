@@ -87,11 +87,22 @@ const PhotoField = forwardRef((props, ref) => {
         }
       );
       console.log("이미지 업로드 성공:", res.data);
-      return res.data.imageUrl;
+      // 이미지 URL을 base64로 변환하여 반환
+      return await getBase64(InputRef.current.files[0]);
     } catch (error) {
       console.error("이미지 업로드 에러:", error);
       throw error;
     }
+  };
+
+  // 파일을 base64로 변환하는 함수
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   useImperativeHandle(ref, () => ({
