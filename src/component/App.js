@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import { AuthProvider } from "../Context/AuthContext";
 import ReviewWrite from "../pages/ReviewWrite";
+import ReviewList from "../pages/ReviewList";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,7 +37,11 @@ function App() {
                 element={<MenuDetail />}
               />
               <Route
-                path="/main/menulist/:id/review"
+                path="/main/menulist/:id/reviewList"
+                element={<ReviewList />}
+              />
+              <Route
+                path="/main/menulist/:id/reviewList/write"
                 element={<ReviewWrite />}
               />
             </Routes>

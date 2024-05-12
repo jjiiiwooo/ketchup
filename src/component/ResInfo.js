@@ -77,9 +77,9 @@ const ResInfo = () => {
   const star = params.get("star");
   const location = params.get("location");
 
-  //리뷰작성 페이지 이동시 id 데이터도 함께 전달
-  const gotoReview = () => {
-    navigate(`/main/menulist/${id}/review`);
+  //리뷰리스트 페이지 이동시 id 데이터도 함께 전달
+  const gotoReviewList = () => {
+    navigate(`/main/menulist/${id}/reviewList`);
   };
 
   return (
@@ -96,7 +96,7 @@ const ResInfo = () => {
             <FaLocationDot />
             {location}
           </p>
-          <ReviewButton onClick={gotoReview}>Review{">"}</ReviewButton>
+          <ReviewButton onClick={gotoReviewList}>Review{">"}</ReviewButton>
         </Container>
       </Wrapper>
     </div>

@@ -89,6 +89,7 @@ const TextField = () => {
         }
       );
       console.log("리뷰 등록이 완료되었습니다.", response.data);
+      alert("리뷰가 등록되었습니다!");
       setContent("");
     } catch (error) {
       console.error("리뷰 게시 중 오류가 발생하였습니다.:", error);
