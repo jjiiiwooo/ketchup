@@ -1,6 +1,7 @@
 import GetUserLocation from "../getUserLocation";
 import { FaLocationArrow } from "react-icons/fa";
 import styled from "styled-components";
+import Backbutton from "./BackButton";
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -23,6 +24,7 @@ const Header = () => {
           <FaLocationArrow size={30} color="C35050" />
           <GetUserLocation />
         </Wrapper>
+        <Backbutton />
       </HeaderBlock>
     </>
   );

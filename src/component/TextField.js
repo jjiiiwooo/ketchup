@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import PhotoField from "./PhotoField";
@@ -62,6 +62,7 @@ const ButtonGroup = styled.div`
 
 const TextField = () => {
   const [content, setContent] = useState(""); //리뷰 내용
+  const navigate = useNavigate();
 
   const { id } = useParams();
   //현재 로그인한 사용자 닉네임 가져오고 프로필 사진이 있는 경우 가져오기
@@ -90,6 +91,7 @@ const TextField = () => {
       );
       console.log("리뷰 등록이 완료되었습니다.", response.data);
       alert("리뷰가 등록되었습니다!");
+      navigate(`/main/menulist/${id}/reviewList`); //리뷰 리스트 페이지로 리다이렉션
       setContent("");
     } catch (error) {
       console.error("리뷰 게시 중 오류가 발생하였습니다.:", error);
