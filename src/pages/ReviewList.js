@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ReviewItem from "../component/ReviewItem";
 import styled from "styled-components";
 import { SlNote } from "react-icons/sl";
+import { AuthContext } from "../Context/AuthContext";
 
 const Text = styled.div`
   font-size: 4vh;
@@ -32,6 +33,7 @@ const WriteButton = styled.button`
 const ReviewList = () => {
   const { id } = useParams(); //useParams로 ResInfo 컴포넌트에서 전달받은 id사용
   const navigate = useNavigate();
+  const { state } = useContext(AuthContext); //현재 로그인한 사용자 상태 가져옴
 
   const [reviews, setReviews] = useState([]);
   const [count, setCount] = useState(0); //리뷰 개수
@@ -77,7 +79,14 @@ const ReviewList = () => {
       <Text>{count}개의 리뷰</Text>
       <div>
         {reviews.map((review) => (
-          <ReviewItem key={review.Rev_id} review={review} writer={writer} />
+          <ReviewItem
+            key={review.Rev_id}
+            review={review}
+            writer={writer}
+            loggedInUser={
+              state.isLoggedIn ? JSON.parse(localStorage.getItem("user")) : null
+            }
+          />
         ))}
       </div>
       <Box>

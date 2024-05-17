@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -40,10 +42,51 @@ const ReviewImage = styled.img`
   padding-top: 2vh;
 `;
 
-const ReviewItem = ({ review, writer }) => {
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1vh;
+  margin-top: 2vh;
+  justify-content: flex-end;
+`;
+
+const Button = styled.button`
+  padding: 0.5vh 2vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: #c35050;
+  color: white;
+  font-size: 2vw;
+
+  &:hover {
+    background-color: #a33d3d;
+  }
+`;
+
+const ReviewItem = ({ review, writer, loggedInUser }) => {
   //review.userid에 맞는 user의 닉네임,프로필 들고오기
   //userid에 해당하는 작성자 찾기
   const user = writer.find((user) => user.id === review.userid);
+
+  const [deleted, setDeleted] = useState(false); // 삭제 여부 상태
+
+  //리뷰 삭제
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:8080/RestrauntReview/${review.id}`)
+      .then(() => {
+        alert("리뷰가 삭제되었습니다.");
+        // 리뷰 삭제 후 deleted 상태를 변경하여 리렌더링하고, 리다이렉션
+        setDeleted(true);
+      })
+      .catch((error) => {
+        console.error("리뷰를 삭제하는데 실패하였습니다.", error);
+      });
+  };
+
+  // 삭제 후 deleted 상태가 true이면 null 반환하여 렌더링하지 않음
+  if (deleted) {
+    return null;
+  }
 
   return (
     <Container>
@@ -57,6 +100,12 @@ const ReviewItem = ({ review, writer }) => {
       <Date>{review.date}</Date>
       <div>{review.content}</div>
       {review.image && <ReviewImage src={review.image} alt="" />}
+      {loggedInUser && loggedInUser.id === review.userid && (
+        <ButtonGroup>
+          <Button>수정</Button>
+          <Button onClick={handleDelete}>삭제</Button>
+        </ButtonGroup>
+      )}
     </Container>
   );
 };

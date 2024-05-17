@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 //초기상태
 const initialState = {
-  isLoggedIn: false, //로그인 여부
+  isLoggedIn: localStorage.getItem("user") ? true : false,
 };
 
 //Context 객체 생성
