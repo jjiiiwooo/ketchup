@@ -72,6 +72,13 @@ const ReviewList = () => {
       });
   }, [id]);
 
+  //리뷰 삭제 후 개수 업데이트
+  //기존 리스트에서 삭제된 리뷰 필터링 후 새로운 리스트로 상태 업데이트
+  const handleReviewDelete = (reviewId) => {
+    setReviews((prev) => prev.filter((review) => review.Rev_id !== reviewId));
+    setCount((prev) => prev - 1); //리뷰 개수 1 감소
+  };
+
   //axios로 받은 데이터를 ReviewItem Props로 전달
 
   return (
@@ -86,6 +93,7 @@ const ReviewList = () => {
             loggedInUser={
               state.isLoggedIn ? JSON.parse(localStorage.getItem("user")) : null
             }
+            onReviewDelete={handleReviewDelete}
           />
         ))}
       </div>
