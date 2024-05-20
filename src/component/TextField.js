@@ -79,13 +79,14 @@ const TextField = () => {
       //PhotoField 컴포넌트에 uploadImage 함수를 호출하여 완성 버튼을 눌렀을 때 이미지 같이 전송
       const imageUrl = await photoFieldRef.current.uploadImage();
 
+      //서버에 이미지 URL과 함께 리뷰 데이터 전송
       const response = await axios.post(
         "http://localhost:8080/RestrauntReview",
         {
           content: content, //글 내용
           userid: user.id, //작성자
           resid: parseInt(id), //해당 식당의 id
-          image: imageUrl,
+          image: imageUrl, //base64 이미지 URL 전송
           date: new Date().toISOString(),
         }
       );
