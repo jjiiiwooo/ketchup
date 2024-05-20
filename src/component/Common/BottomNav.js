@@ -1,10 +1,9 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { MdHome } from "react-icons/md";
 import { MdSearch } from "react-icons/md";
 import { MdCameraAlt } from "react-icons/md";
-import { MdWidgets } from "react-icons/md";
-import { MdPerson } from "react-icons/md";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -32,23 +31,15 @@ const BottomNav = () => {
           icon={<MdHome size={40} />}
         />
         <BottomNavigationAction
+          label="Camera"
+          icon={<MdCameraAlt size={40} />}
+          component={Link}
+          to="/main/picture"
+        />
+        <BottomNavigationAction
           label="Search"
           value="search"
           icon={<MdSearch size={40} />}
-        />
-        <BottomNavigationAction
-          label="Camera"
-          icon={<MdCameraAlt size={40} />}
-        />
-        <BottomNavigationAction
-          label="Tema"
-          value="tema"
-          icon={<MdWidgets size={40} />}
-        />
-        <BottomNavigationAction
-          label="Mypage"
-          value="mypage"
-          icon={<MdPerson size={40} />}
         />
       </BottomNavigation>
     </Wrapper>

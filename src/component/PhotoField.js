@@ -69,7 +69,7 @@ const PhotoField = forwardRef((props, ref) => {
     InputRef.current.value = "";
   };
 
-  //이미지 서버 업로드
+  //이미지를 base64로 변환하여 반환
   //TextField에서 useRef를 통해 접근
   const uploadImage = async () => {
     try {
@@ -80,6 +80,7 @@ const PhotoField = forwardRef((props, ref) => {
       throw error;
     }
   };
+
   // 파일을 base64로 변환하는 함수
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {

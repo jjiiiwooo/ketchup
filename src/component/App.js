@@ -10,6 +10,7 @@ import Signup from "../pages/Signup";
 import { AuthProvider } from "../Context/AuthContext";
 import ReviewWrite from "../pages/ReviewWrite";
 import ReviewList from "../pages/ReviewList";
+import UserPicture from "../pages/UserPicture";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ function App() {
               <Route index element={<Login />} />
               <Route path="signup" element={<Signup />} />
               <Route path="/main" element={<Main />} />
+              <Route path="/main/picture" element={<UserPicture />} />
               <Route path="/main/menulist/:id" element={<MenuList />} />
               <Route
                 path="/main/menulist/:id/:Food_id"

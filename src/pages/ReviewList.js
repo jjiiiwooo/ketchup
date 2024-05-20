@@ -35,7 +35,7 @@ const ReviewList = () => {
   const navigate = useNavigate();
   const { state } = useContext(AuthContext); //현재 로그인한 사용자 상태 가져옴
 
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]); //리뷰 목록 상태
   const [count, setCount] = useState(0); //리뷰 개수
   const [writer, setWriter] = useState([]); //리뷰 작성자
 
