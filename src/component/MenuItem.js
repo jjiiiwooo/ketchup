@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { FaSearchPlus } from "react-icons/fa";
+import MenuNullList from "./MenuNullList";
 
 const Box = styled.div`
   width: 90vw;
@@ -60,13 +61,20 @@ const MenuItem = () => {
       .then((res) => {
         const resData = res.data;
 
-        //가져온 음식 데이터 설정
-        setFood(resData.food);
+        if (resData.food) {
+          //가져온 음식 데이터 설정
+          setFood(resData.food);
+        }
       })
       .catch((error) => {
         alert("데이터를 가져오는 데 실패했습니다", error);
       });
   }, [id]);
+
+  //food 데이터가 없는 경우
+  if (food.length === 0) {
+    return <MenuNullList />;
+  }
 
   return (
     <>

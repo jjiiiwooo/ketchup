@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
 import styled from "styled-components";
 import PhotoField from "./PhotoField";
 
@@ -79,18 +79,17 @@ const TextField = () => {
       //PhotoField 컴포넌트에 uploadImage 함수를 호출하여 완성 버튼을 눌렀을 때 이미지 같이 전송
       const imageUrl = await photoFieldRef.current.uploadImage();
 
-      //서버에 이미지 URL과 함께 리뷰 데이터 전송
-      const response = await axios.post(
-        "http://localhost:8080/RestrauntReview",
-        {
-          content: content, //글 내용
-          userid: user.id, //작성자
-          resid: parseInt(id), //해당 식당의 id
-          image: imageUrl, //base64 이미지 URL 전송
-          date: new Date().toISOString(),
-        }
-      );
-      console.log("리뷰 등록이 완료되었습니다.", response.data);
+      //Firebase Realtime Database에 리뷰 데이터 전송
+      const newReviewRef = database.ref("RestrauntReview").push();
+      await newReviewRef.set({
+        content: content, //글 내용
+        userid: user.id, //작성자
+        resid: parseInt(id), //해당 식당의 id
+        image: imageUrl, //base64 이미지 URL 전송
+        date: new Date().toISOString(),
+      });
+
+      console.log("리뷰 등록이 완료되었습니다.");
       alert("리뷰가 등록되었습니다!");
       navigate(`/main/menulist/${id}/reviewList`); //리뷰 리스트 페이지로 리다이렉션
       setContent("");
@@ -102,7 +101,9 @@ const TextField = () => {
   return (
     <div>
       <ButtonGroup>
-        <button className="cancle">취소</button>
+        <button className="cancle" onClick={() => navigate(-1)}>
+          취소
+        </button>
         <button className="complete" onClick={handleSubmit}>
           완료
         </button>

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
+import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
 
 const Container = styled.div`
   border: 1px solid #444343;
@@ -63,21 +63,21 @@ const Button = styled.button`
 `;
 
 const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
-  //review.userid에 맞는 user의 닉네임,프로필 들고오기
-  //userid에 해당하는 작성자 찾기
+  // review.userid에 맞는 user의 닉네임, 프로필 들고오기
   const user = writer.find((user) => user.id === review.userid);
 
   const [deleted, setDeleted] = useState(false); // 삭제 여부 상태
 
-  //리뷰 삭제
+  // 리뷰 삭제
   const handleDelete = () => {
-    axios
-      .delete(`http://localhost:8080/RestrauntReview/${review.id}`)
+    database
+      .ref(`RestrauntReview/${review.id}`)
+      .remove()
       .then(() => {
         alert("리뷰가 삭제되었습니다.");
         // 리뷰 삭제 후 deleted 상태를 변경하여 리렌더링하고, 리다이렉션
         setDeleted(true);
-        onReviewDelete(review.id); //리뷰 개수 업데이트
+        onReviewDelete(review.id); // 리뷰 개수 업데이트
       })
       .catch((error) => {
         console.error("리뷰를 삭제하는데 실패하였습니다.", error);
