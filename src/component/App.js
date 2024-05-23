@@ -13,6 +13,7 @@ import ReviewList from "../pages/ReviewList";
 import UserPicture from "../pages/UserPicture";
 import MenuRestructure from "../pages/MenuRestructure";
 import ReviewUpdate from "../pages/ReviewUpdate";
+import RestructureDetail from "../pages/RestructureDetail";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,10 @@ function App() {
               <Route
                 path="/main/picture/resutucture"
                 element={<MenuRestructure />}
+              />
+              <Route
+                path="/main/picture/resutucture/detail/:id"
+                element={<RestructureDetail />}
               />
               <Route path="/main/menulist/:id" element={<MenuList />} />
               <Route

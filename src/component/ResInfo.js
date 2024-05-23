@@ -85,7 +85,7 @@ const ResInfo = () => {
   return (
     <div>
       <Wrapper>
-        <Image img src={img} alt={name} />
+        <Image src={img} alt={name} />
         <Container>
           <p className="id">{id}</p>
           <p className="name">{name}</p>

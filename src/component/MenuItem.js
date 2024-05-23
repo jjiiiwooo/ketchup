@@ -83,12 +83,16 @@ const MenuItem = () => {
           <Box key={item.Food_id}>
             <div>
               <Wrapper>
-                <img
-                  className="image"
-                  style={{ width: "160px", height: "160px" }}
-                  src={item.FoodImage}
-                  alt={item.caption}
-                />
+                {/* 유효한 이미지 URL을 나타내는 문자열인지 확인 */}
+                {typeof item.FoodImage === "string" &&
+                  item.FoodImage.trim() !== "" && (
+                    <img
+                      className="image"
+                      style={{ width: "160px", height: "160px" }}
+                      src={item.FoodImage}
+                      alt={item.caption}
+                    />
+                  )}
                 <div className="container">
                   <h2 className="Name">{item.FoodName}</h2>
                   <p className="description">{item.FoodProfile}</p>
