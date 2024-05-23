@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "../Context/AuthContext";
 import Splash from "../pages/Splash";
 import Main from "../pages/Main";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MenuList from "../pages/MenuList";
 import MenuDetail from "../pages/MenuDetail";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import { AuthProvider } from "../Context/AuthContext";
 import ReviewWrite from "../pages/ReviewWrite";
 import ReviewList from "../pages/ReviewList";
 import UserPicture from "../pages/UserPicture";
@@ -58,7 +58,7 @@ function App() {
                 element={<ReviewWrite />}
               />
               <Route
-                path="/main/menulist/:id/reviewList/update"
+                path="/main/menulist/:id/reviewList/update/:reviewId"
                 element={<ReviewUpdate />}
               />
             </Routes>

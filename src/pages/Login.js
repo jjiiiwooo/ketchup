@@ -165,10 +165,10 @@ const Login = () => {
     <div>
       <Wrapper>
         <div>
-          <p className="LoginText">LOGIN</p>
-
+          <div className="LoginText">LOGIN</div>{" "}
+          {/* Changed from <p> to <div> */}
           <Email>
-            <p className="text">EMAIL</p>
+            <div className="text">EMAIL</div> {/* Changed from <p> to <div> */}
             <input
               className="LInput"
               type="text"
@@ -176,31 +176,26 @@ const Login = () => {
               value={email}
               onChange={handleEmail}
             />
-            <p className="Error">
-              {!emailValid && email.length > 0 && (
-                <div>Please enter a valid e-mail </div>
-              )}
-            </p>
+            {!emailValid && email.length > 0 && (
+              <div className="Error">Please enter a valid e-mail</div>
+            )}
           </Email>
-
           <Password>
-            <p className="text">PASSWORD</p>
+            <div className="text">PASSWORD</div>{" "}
+            {/* Changed from <p> to <div> */}
             <input
               className="PInput"
               type="password"
               value={password}
               onChange={handlePassword}
             />
-            <p className="Error">
-              {!pwValid && password.length > 0 && (
-                <div>
-                  Please enter at least 8 characters including English and
-                  numbers.
-                </div>
-              )}
-            </p>
+            {!pwValid && password.length > 0 && (
+              <div className="Error">
+                Please enter at least 8 characters including English and
+                numbers.
+              </div>
+            )}
           </Password>
-
           <ButtonGroup>
             <button className="submit" onClick={handleConfirmButton}>
               SUBMIT

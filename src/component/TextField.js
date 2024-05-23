@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
+import { database } from "./firebaseConfig";
 import styled from "styled-components";
 import PhotoField from "./PhotoField";
 
@@ -41,7 +41,7 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
 
-  .cancle {
+  .cancel {
     order: 1;
     font-size: 3vh;
     border: none;
@@ -60,38 +60,53 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const TextField = ({ buttonText }) => {
-  const [content, setContent] = useState(""); //리뷰 내용
+const TextField = ({ buttonText, reviewData }) => {
+  const [content, setContent] = useState(reviewData ? reviewData.content : "");
+  const [image, setImage] = useState(reviewData ? reviewData.image : ""); // eslint-disable-line no-unused-vars
   const navigate = useNavigate();
-
-  const { id } = useParams();
-  //현재 로그인한 사용자 닉네임 가져오고 프로필 사진이 있는 경우 가져오기
-  //로컬 스토리지에 저장된 user 데이터 읽기
+  const { id, reviewId } = useParams(); // 식당 ID와 리뷰 ID
   const user = JSON.parse(localStorage.getItem("user"));
-
-  //PhotoField 컴포넌트에 접근할 useRef 생성
   const photoFieldRef = useRef();
 
-  //리뷰 작성 POST
+  useEffect(() => {
+    if (reviewData) {
+      setContent(reviewData.content);
+      setImage(reviewData.image);
+    }
+  }, [reviewData]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //PhotoField 컴포넌트에 uploadImage 함수를 호출하여 완성 버튼을 눌렀을 때 이미지 같이 전송
-      const imageUrl = await photoFieldRef.current.uploadImage();
+      // 이미지가 있는지 확인
+      const imageUrl = photoFieldRef.current
+        ? await photoFieldRef.current.uploadImage()
+        : "";
+      const currentDate = new Date().toISOString();
 
-      //Firebase Realtime Database에 리뷰 데이터 전송
-      const newReviewRef = database.ref("RestrauntReview").push();
-      await newReviewRef.set({
-        content: content, //글 내용
-        userid: user.id, //작성자
-        resid: parseInt(id), //해당 식당의 id
-        image: imageUrl, //base64 이미지 URL 전송
-        date: new Date().toISOString(),
-      });
+      if (reviewId) {
+        // 리뷰 수정
+        await database.ref(`RestrauntReview/${reviewId}`).update({
+          content: content,
+          image: imageUrl,
+          date: currentDate,
+        });
+        alert("리뷰가 수정되었습니다!");
+      } else {
+        // 리뷰 작성
+        const newReviewRef = database.ref("RestrauntReview").push();
+        await newReviewRef.set({
+          content: content,
+          userid: user.id,
+          resid: parseInt(id),
+          image: imageUrl,
+          date: currentDate,
+          Rev_id: newReviewRef.key,
+        });
+        alert("리뷰가 등록되었습니다!");
+      }
 
-      console.log("리뷰 등록이 완료되었습니다.");
-      alert("리뷰가 등록되었습니다!");
-      navigate(`/main/menulist/${id}/reviewList`); //리뷰 리스트 페이지로 리다이렉션
+      navigate(`/main/menulist/${id}/reviewList`);
       setContent("");
     } catch (error) {
       console.error("리뷰 게시 중 오류가 발생하였습니다.:", error);
@@ -101,7 +116,7 @@ const TextField = ({ buttonText }) => {
   return (
     <div>
       <ButtonGroup>
-        <button className="cancle" onClick={() => navigate(-1)}>
+        <button className="cancel" onClick={() => navigate(-1)}>
           취소
         </button>
         <button className="complete" onClick={handleSubmit}>
@@ -120,7 +135,7 @@ const TextField = ({ buttonText }) => {
             placeholder="리뷰를 작성해주세요"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-          ></StyledInput>
+          />
         </form>
       </ContentBox>
       <PhotoField ref={photoFieldRef} />

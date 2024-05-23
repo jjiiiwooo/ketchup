@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
 
 const Container = styled.div`
   border: 1px solid #444343;
@@ -64,38 +63,25 @@ const Button = styled.button`
 `;
 
 const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
-  // review.userid에 맞는 user의 닉네임, 프로필 들고오기
   const user = writer.find((user) => user.id === review.userid);
-
-  const navigate = useNavigate();
-  const { id } = useParams(); // useParams로 ResInfo 컴포넌트에서 전달받은 id사용
-
   const [deleted, setDeleted] = useState(false); // 삭제 여부 상태
+  const navigate = useNavigate();
 
   // 리뷰 삭제
   const handleDelete = () => {
-    database
-      .ref(`RestrauntReview/${review.id}`)
-      .remove()
-      .then(() => {
-        alert("리뷰가 삭제되었습니다.");
-        // 리뷰 삭제 후 deleted 상태를 변경하여 리렌더링하고, 리다이렉션
-        setDeleted(true);
-        onReviewDelete(review.id); // 리뷰 개수 업데이트
-      })
-      .catch((error) => {
-        console.error("리뷰를 삭제하는데 실패하였습니다.", error);
-      });
+    onReviewDelete(review.Rev_id);
+    setDeleted(true);
   };
 
-  // 삭제 후 deleted 상태가 true이면 null 반환하여 렌더링하지 않음
   if (deleted) {
     return null;
   }
 
   //리뷰 수정 페이지로 이동
   const handleUpdate = () => {
-    navigate(`/main/menulist/${id}/reviewList/update`);
+    navigate(
+      `/main/menulist/${review.resid}/reviewList/update/${review.Rev_id}`
+    );
   };
 
   return (

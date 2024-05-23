@@ -74,7 +74,7 @@ const ResInfo = () => {
   //쿼리 가져오기
   const name = params.get("name");
   const img = params.get("img");
-  const star = params.get("star");
+  const star = parseFloat(params.get("star"));
   const location = params.get("location");
 
   //리뷰리스트 페이지 이동시 id 데이터도 함께 전달
@@ -89,9 +89,9 @@ const ResInfo = () => {
         <Container>
           <p className="id">{id}</p>
           <p className="name">{name}</p>
-          <p className="star">
+          <div className="star">
             <Star star={star} />
-          </p>
+          </div>
           <p className="location">
             <FaLocationDot />
             {location}
