@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
 
@@ -68,6 +68,7 @@ const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
   const user = writer.find((user) => user.id === review.userid);
 
   const navigate = useNavigate();
+  const { id } = useParams(); // useParams로 ResInfo 컴포넌트에서 전달받은 id사용
 
   const [deleted, setDeleted] = useState(false); // 삭제 여부 상태
 
@@ -94,7 +95,7 @@ const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
 
   //리뷰 수정 페이지로 이동
   const handleUpdate = () => {
-    navigate("/main/menulist/:id/reviewList/update");
+    navigate(`/main/menulist/${id}/reviewList/update`);
   };
 
   return (
