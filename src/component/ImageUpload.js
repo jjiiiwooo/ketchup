@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -56,9 +57,10 @@ const Button = styled.div`
   }
 `;
 
-const ImageUpload = () => {
+const ImageUpload = ({ id }) => {
   const [image, setImage] = useState(null);
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   const onImageUpload = (e) => {
     setImage(e.target.files[0]);
@@ -74,6 +76,11 @@ const ImageUpload = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  //메뉴판 재구성 리스트로 이동
+  const gotoMenuList = () => {
+    navigate("/main/picture/resutucture");
   };
 
   return (
@@ -96,7 +103,14 @@ const ImageUpload = () => {
           </ImageContainer>
           <ButtonContainer>
             <ButtonBox>
-              <Button onClick={onUpload}>Send Image</Button>
+              <Button
+                onClick={() => {
+                  onUpload();
+                  gotoMenuList();
+                }}
+              >
+                Send Image
+              </Button>
             </ButtonBox>
           </ButtonContainer>
         </div>
