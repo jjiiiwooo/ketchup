@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { database } from "../component/firebaseConfig"; // Firebase 설정 파일에서 database 임포트
 
@@ -66,6 +67,8 @@ const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
   // review.userid에 맞는 user의 닉네임, 프로필 들고오기
   const user = writer.find((user) => user.id === review.userid);
 
+  const navigate = useNavigate();
+
   const [deleted, setDeleted] = useState(false); // 삭제 여부 상태
 
   // 리뷰 삭제
@@ -89,6 +92,11 @@ const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
     return null;
   }
 
+  //리뷰 수정 페이지로 이동
+  const handleUpdate = () => {
+    navigate("/main/menulist/:id/reviewList/update");
+  };
+
   return (
     <Container>
       <User>
@@ -103,7 +111,7 @@ const ReviewItem = ({ review, writer, loggedInUser, onReviewDelete }) => {
       {review.image && <ReviewImage src={review.image} alt="" />}
       {loggedInUser && loggedInUser.id === review.userid && (
         <ButtonGroup>
-          <Button>수정</Button>
+          <Button onClick={handleUpdate}>수정</Button>
           <Button onClick={handleDelete}>삭제</Button>
         </ButtonGroup>
       )}

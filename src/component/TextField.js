@@ -60,7 +60,7 @@ const ButtonGroup = styled.div`
   }
 `;
 
-const TextField = () => {
+const TextField = ({ buttonText }) => {
   const [content, setContent] = useState(""); //리뷰 내용
   const navigate = useNavigate();
 
@@ -105,7 +105,7 @@ const TextField = () => {
           취소
         </button>
         <button className="complete" onClick={handleSubmit}>
-          완료
+          {buttonText}
         </button>
       </ButtonGroup>
       <ContentBox>
