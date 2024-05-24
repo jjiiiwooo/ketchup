@@ -166,7 +166,6 @@ const Login = () => {
       <Wrapper>
         <div>
           <div className="LoginText">LOGIN</div>{" "}
-          {/* Changed from <p> to <div> */}
           <Email>
             <div className="text">EMAIL</div>
             <input
