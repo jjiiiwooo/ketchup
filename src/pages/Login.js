@@ -168,7 +168,7 @@ const Login = () => {
           <div className="LoginText">LOGIN</div>{" "}
           {/* Changed from <p> to <div> */}
           <Email>
-            <div className="text">EMAIL</div> {/* Changed from <p> to <div> */}
+            <div className="text">EMAIL</div>
             <input
               className="LInput"
               type="text"
@@ -182,7 +182,6 @@ const Login = () => {
           </Email>
           <Password>
             <div className="text">PASSWORD</div>{" "}
-            {/* Changed from <p> to <div> */}
             <input
               className="PInput"
               type="password"
